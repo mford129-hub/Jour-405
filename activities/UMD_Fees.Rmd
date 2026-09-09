@@ -33,7 +33,9 @@ umd_fees_pct <- umd_fees |> mutate(pct_change = (`Fall 2026`- `Fall 2021`)/`Fall
 
 Write a few sentences about what you found in those percentages. What's the story here? What questions do you have?
 
+The story here is that Overall, the number of students using these services increased by about 25% from 2021 to 2026. Student Sustainability had the biggest increase at 150%, while the Shuttle Bus increased by about 58%.
 
+I wonder why more students are using these services and why Sustainability increased so much.3
 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
