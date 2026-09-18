@@ -9,6 +9,7 @@ In this assignment, we will be working with a dataset of total crimes reported b
 You will need to load the tidyverse library and the janitor library
 
 ```{r}
+library(tidyverse)
 ```
 
 Then you'll load the data from the web. The URL for the data is: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv. You will create a dataframe called `md_cities` that contains the data from this URL.
@@ -16,19 +17,26 @@ Then you'll load the data from the web. The URL for the data is: https://raw.git
 ### Task 2: Load the Data
 
 ```{r}
+md_cities<-read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv")
 ```
 ### Task 3: Calculating Rates
 
 Calculate violent and property crime rates for each city for both years using `mutate()`. You'll create four new columns: `violent_rate_2019`, `property_rate_2019`, `violent_rate_2020`, and `property_rate_2020`. You'll need to figure out the proper unit rate, given that there are varying populations. There's no perfect choice; choose the one that works best for you. Save the results to a new dataframe called `md_cities_rates`.
 
 ```{r}
+md_cities_rates <-md_cities %>% mutate(violent_rate_2019 = violent2019 / pop2019 * 1000,
+    property_rate_2019 = property2019 / pop2019 * 1000,
+    violent_rate_2020 = violent2020 / pop2020 * 1000,
+    property_rate_2020 = property2020 / pop2020 * 1000
+)
+
 ```
 
 ### Task 4: Describe the Rates
 
 Examine the new dataframe, `md_cities_rates`, by clicking on it in the Environment tab in RStudio and sorting by the rate columns. Write a couple of sentences about the results, comparing and contrasting the cities with the highest rates (both violent and property) in 2019 and 2020. Do you see any patterns? What does this tell you about crime in Maryland cities? What's the story here?
 
-ANSWER HERE
+Baltimore had the highest violent crime rate in 2019 and 2020, but it went down in 2020. Ocean City had the highest property crime rate, and it went up in 2020. This shows that crime rates can be very different between cities. This tells me that crime in  Maryland cities varies between the different crimes. The story here is that Baltimore area is more violent in terms of crimes unlike Ocean City who leans towards property crime.
 
 
 ### Task 5: Calculate Percentage Change
@@ -36,19 +44,24 @@ ANSWER HERE
 Let's add two percentage change columns to your dataframe: one for violent crime rates and one for property crime rates. You'll calculate the percentage change between 2019 and 2020 for each city. Save the results to a new dataframe called `md_cities_change`.
 
 ```{r}
+md_cities_change <-md_cities_rates %>%
+  mutate(
+violent_rate_change = (violent_rate_2020 - violent_rate_2019) / violent_rate_2019 * 100)
 ```
 
 ### Task 7: Describe Percentage Changes
 
 Look at the `md_cities_change` dataframe by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the percentage change results. What's more interesting here, the patterns or the outliers? What's the story in the data?
 
-ANSWER HERE
+The biggest changes were in a few cities, while most cities had smaller changes. The outliers are more interesting because some cities had much bigger increases or decreases than the others. This shows that crime rates did not change the same way in every Maryland city.
 
 ### Task 8: Tell the Best Story
 
 Write up a lede and nutgraf of a story with the _best_ story idea you've found in this assignment. The lede should be a single sentence that summarizes the most important information in the data. The nutgraf should be a paragraph that provides more context and explains why the data is important.
 
-ANSWER HERE
+Crime rates changed differently across Maryland cities from 2019 to 2020.
+
+The data compares violent and property crime rates across 137 Maryland cities. Some cities saw crime rates increase while others saw decreases from 2019 to 2020. This shows that crime trends were different across Maryland. Looking at individual cities helps show changes that may not be clear from statewide crime numbers.
 
 ### Task 9: Save Your Work and Put it on GitHub
 
