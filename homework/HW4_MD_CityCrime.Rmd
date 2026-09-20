@@ -70,4 +70,17 @@ The data compares violent and property crime rates across 137 Maryland cities. S
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
 
+###Task 10
+```{r}
+md_cities_percentiles <- md_cities_rates %>%
+  mutate(percentile = ntile(violent_rate_2020, 100))
 
+md_cities_percentiles %>%
+  filter(percentile > 90) %>%
+  nrow()
+```
+```{r}
+md_cities_rates %>%
+  summarize(IQR = IQR(violent_rate_2020))
+```
+No, the results do not change my story idea. The results show that some cities have much higher violent crime rates than other.This supports my idea that crime rates can vary between Maryland cities.
