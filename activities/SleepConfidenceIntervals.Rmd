@@ -41,7 +41,7 @@ sleep_stats
 
 **Answer this question:** Based on these numbers alone, what would you tell the health reporter? Why might it be risky to report the average as the definitive answer for all students?
 
-ANSWER HERE
+Based off these numbers alone I would tell the health reporter that the hours the average student sleeps about 7.7 hours, but not all students sleep the same amount.Not all students have the sleep schedule also the  only 37 students were  surveyed .
 
 ### Task 3: Calculate the standard error
 
@@ -58,7 +58,7 @@ sleep_stats
 
 **Answer this question:** The standard error is much smaller than the standard deviation. Why? What does each one measure?
 
-ANSWER HERE
+The standard deviation measures how much individual hours differ. The standard error is smaller because it measures how much the sample average might change. That's what I'm thinking to be quite honest.
 
 ### Task 4: Calculate a 95% confidence interval
 
@@ -78,8 +78,7 @@ sleep_stats |>
 ```
 
 **Answer this question:** Write one sentence explaining what this confidence interval means in plain English that a reader would understand.
-
-ANSWER HERE
+We are 95% confident that the true average hours is between 7.28 and 8.18 hours.
 
 ### Task 5: Visualize the distribution with the confidence interval
 
@@ -112,8 +111,9 @@ ggplot(sleep_data, aes(x = hours)) +
 
 **Answer this question:** Look at the chart. Notice that the confidence interval is much narrower than the spread of individual data points. Why? What's the difference between the variation in individual sleep hours and the uncertainty about the average?
 
-ANSWER HERE
+Individual sleep hours vary a lot, but the confidence interval shows how close the average is likely to be to the true average.
 
+ANSWER HERE
 ### Task 6: The CDC question — is 7 hours within the interval?
 
 The CDC recommends at least 7 hours. Based on the confidence interval, can we say students are getting enough sleep? Let's check.
@@ -134,7 +134,7 @@ sleep_stats |>
   b) "Students May Not Be Getting Enough Sleep, Survey Suggests"
   c) "Survey: Students Getting Recommended Amount of Sleep"
 
-ANSWER HERE
+A is justified because the entire confidence interval (7.28 to 8.18 hours) is above 7 hours.
 
 ### Task 7: What about a bigger sample?
 
