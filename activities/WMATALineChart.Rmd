@@ -58,4 +58,4 @@ weekly_wmata |>
 
 **Answer this question:** Describe the trend you see. Is ridership going up, down, or staying flat? What are the big dips, and what might explain them? What would you want to know before writing a story about Metro weekly ridership trends?
 
-ANSWER HERE
+I guess the trends I see when I look at this chart is in January 2025 it looks as if the total riders started out low and started to increase slowly but by July it decreases and remains steady until January of 2026 and increases shortly after. So this chart is not even distributed because the total riders fluctuate. I guess what I would want to know before I wrote a story would be what is the reason for the increase and decrease for the total riders. Are there any specific reasons? What makes people want to have a weekly ridership futhermore how does it impact people? How often a week does people use the metro per weekly like three times a week or what? 
