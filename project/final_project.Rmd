@@ -1,0 +1,114 @@
+---
+title: " Racial and Ethnic Diversity at Big Ten Universities"
+author: "Mylanie Ford"
+date: 11/9/2026
+
+---
+```{r setup}
+library(tidyverse)
+```
+
+## Project Overview
+
+My project will look at how the racial and ethnic composition of undergraduate students at the University of Maryland has changed compared with other Big Ten universities from Fall 2014 to Fall 2024.
+
+## Research Question
+
+Did UMD experience a greater increase in racial diversity among undergraduate students compared with other Big Ten universities between Fall 2014 and Fall 2024?
+
+## Hypothesis
+
+I expect UMD to have experienced an increase in racial and ethnic diversity between 2014 and 2024.
+
+## Data Source
+
+The data for this project comes from a CSV file provided by Professor Derek Willis. The file is hosted on GitHub.
+
+## Loading the Data
+
+```{r}
+# Read the data
+enrollment <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/big_ten_enrollment_long.csv")
+
+# Look at the data
+glimpse(enrollment)
+```
+
+## Examining the Data
+
+Looking at the dataset there are 1,980 rows and 5 columns. It includes undergraduate enrollment information for 18 universities from 2014 through 2024.
+
+I want to look at the schools, years, and racial and ethnic groups included in the dataset.
+
+```{r}
+# Look at the schools
+unique(enrollment$school)
+
+# Look at the years
+unique(enrollment$year)
+
+# Look at the racial and ethnic groups
+unique(enrollment$race)
+```
+
+## Counting the Data
+
+I also want to see how many records are included for each school and racial and ethnic group.
+
+```{r}
+# Count records for each school
+count(enrollment, school)
+
+# Count records for each racial and ethnic group
+count(enrollment, race)
+```
+
+## Important Columns
+
+The columns that will be most important for my project are:
+
+school: The name of each university.
+race:  The racial or ethnic group being reported.
+year: The year the enrollment data was collected.
+percent: The percentage of undergraduate students in each group.
+unit_id: The identification number for each university.
+
+I will mainly use school, race, year, and percent to compare enrollment changes between UMD and the other universities.
+
+## Checking for Missing Information
+
+I want to check whether any information is missing from the dataset.
+
+```{r}
+# Check for missing values
+colSums(is.na(enrollment))
+```
+
+## What Might Be Missing?
+
+The dataset shows percentages, but I also want to know how many students were actually in each racial and ethnic group.
+
+I also wonder how the percentages were calculated and whether the same racial and ethnic groups were counted each year.
+
+## Questions About the Data
+1. Do the percentages represent each racial or ethnic group's share of the total undergraduate enrollment at each university?
+
+2. Were the same racial and ethnic categories used consistently from 2014 through 2024?
+
+3. Why does the dataset include both an "Asian/Native Hawaiian/Pacific Islander" category and separate Asian and Native Hawaiian or Other Pacific Islander categories?
+
+4. How many undergraduate students were actually enrolled in each racial and ethnic group, rather than just showing percentages?
+
+5. Why did some universities experience little to no change in racial and ethnic representation between 2014 and 2024?
+
+6. Did the percentage of White undergraduate students increase or decrease at most of the universities during this time?
+
+7. Were there universities where White student representation increased while representation among other racial and ethnic groups stayed the same or decreased?
+
+8. Which universities experienced the largest increases and decreases in racial and ethnic representation?
+
+9. Did UMD experience greater changes in racial and ethnic representation compared with the other universities?
+
+10. How can I use percentage changes and percentage-point changes in R to compare racial and ethnic enrollment at UMD with the other universities?
+
+
