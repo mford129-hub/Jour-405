@@ -9,16 +9,16 @@ library(tidyverse)
 ```
 
 ## Project Overview
+After your advice I decided to revise my project overview, research question, hypothesis, data source and I added a planned analyses. My project will examine how the racial and ethnic representation of undergraduate students at the University of Maryland and other Big Ten universities changed from Fall 2014 to Fall 2024. I will focus on changes in the percentages of different racial and ethnic groups.
 
-My project will look at how the racial and ethnic composition of undergraduate students at the University of Maryland has changed compared with other Big Ten universities from Fall 2014 to Fall 2024.
 
 ## Research Question
 
-Did UMD experience a greater increase in racial diversity among undergraduate students compared with other Big Ten universities between Fall 2014 and Fall 2024?
+How did Asian, Black, and Hispanic/Latino undergraduate representation change at Big Ten universities between Fall 2014 and Fall 2024?
 
 ## Hypothesis
 
-I expect UMD to have experienced an increase in racial and ethnic diversity between 2014 and 2024.
+I expect the percentage of Asian, Black, and Hispanic/Latino undergraduate students to change between 2014 and 2024. I want to see which groups experienced the largest increases or decreases in representation.
 
 ## Data Source
 
@@ -83,6 +83,10 @@ I want to check whether any information is missing from the dataset.
 # Check for missing values
 colSums(is.na(enrollment))
 ```
+## Planned Analyses
+
+
+I plan to calculate the percentage-point changes in racial and ethnic representation at Big Ten universities between 2014 and 2024. I will use the mean and median to examine the average changes across universities and compare UMD's results with other Big Ten schools. I also plan to rank the universities for each racial and ethnic group and create bar charts to visualize the changes. These analyses will help me identify which groups experienced the largest increases or decreases in representation.
 
 ## What Might Be Missing?
 
