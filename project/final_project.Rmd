@@ -1,30 +1,38 @@
 ---
 title: " Racial and Ethnic Diversity at Big Ten Universities"
 author: "Mylanie Ford"
-date: 11/9/2026
+date: 11/24/2026
 
 ---
 ```{r setup}
 library(tidyverse)
 ```
+## Planned Analyses
 
-## Project Overview
-After your advice I decided to revise my project overview, research question, hypothesis, data source and I added a planned analyses. My project will examine how the racial and ethnic representation of undergraduate students at the University of Maryland and other Big Ten universities changed from Fall 2014 to Fall 2024. I will focus on changes in the percentages of different racial and ethnic groups.
+Okay, I've read your advice and I tried my best lol with thinkiing this through.
+
+For this project, I will examine how racial and ethnic representation changed at Big Ten universities between 2014 and 2024.
+
+Percentage-Point Changes
+
+I will subtract each group's 2014 percentage from its 2024 percentage at every university. This will show which groups increased or decreased at each school. I will also compare UMD's changes with those of other Big Ten universities.
+
+ Descriptive Statistics
+
+I will calculate the mean and median percentage-point changes for each racial and ethnic group across the universities. This will help identify overall patterns and show how UMD compares with the rest of the conference.
 
 
-## Research Question
+Charts
+I will create line charts to show how each group's representation changed over time. I will also create charts comparing the percentage-point changes across universities.
 
-How did Asian, Black, and Hispanic/Latino undergraduate representation change at Big Ten universities between Fall 2014 and Fall 2024?
 
-## Hypothesis
 
-I expect the percentage of Asian, Black, and Hispanic/Latino undergraduate students to change between 2014 and 2024. I want to see which groups experienced the largest increases or decreases in representation.
 
-## Data Source
+ Regression Analysis
 
-The data for this project comes from a CSV file provided by Professor Derek Willis. The file is hosted on GitHub.
+I may use regression analysis to examine how each group's representation changed over time and whether there was an overall upward or downward trend.
 
-## Loading the Data
+
 
 ```{r}
 # Read the data
@@ -88,31 +96,74 @@ colSums(is.na(enrollment))
 
 I plan to calculate the percentage-point changes in racial and ethnic representation at Big Ten universities between 2014 and 2024. I will use the mean and median to examine the average changes across universities and compare UMD's results with other Big Ten schools. I also plan to rank the universities for each racial and ethnic group and create bar charts to visualize the changes. These analyses will help me identify which groups experienced the largest increases or decreases in representation.
 
-## What Might Be Missing?
 
-The dataset shows percentages, but I also want to know how many students were actually in each racial and ethnic group.
+```{r}
+enrollment <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/big_ten_enrollment_long.csv")
+```
 
-I also wonder how the percentages were calculated and whether the same racial and ethnic groups were counted each year.
+```{r}
+unique(enrollment$race)
+```
+```{r}
+group_data <- subset(enrollment,
+  race == "Asian/Native Hawaiian/Pacific Islander" |
+  race == "Black or African American" |
+  race == "Hispanic/Latino"
+)
 
-## Questions About the Data
-1. Do the percentages represent each racial or ethnic group's share of the total undergraduate enrollment at each university?
-
-2. Were the same racial and ethnic categories used consistently from 2014 through 2024?
-
-3. Why does the dataset include both an "Asian/Native Hawaiian/Pacific Islander" category and separate Asian and Native Hawaiian or Other Pacific Islander categories?
-
-4. How many undergraduate students were actually enrolled in each racial and ethnic group, rather than just showing percentages?
-
-5. Why did some universities experience little to no change in racial and ethnic representation between 2014 and 2024?
-
-6. Did the percentage of White undergraduate students increase or decrease at most of the universities during this time?
-
-7. Were there universities where White student representation increased while representation among other racial and ethnic groups stayed the same or decreased?
-
-8. Which universities experienced the largest increases and decreases in racial and ethnic representation?
-
-9. Did UMD experience greater changes in racial and ethnic representation compared with the other universities?
-
-10. How can I use percentage changes and percentage-point changes in R to compare racial and ethnic enrollment at UMD with the other universities?
+head(group_data)
+```
 
 
+```{r}
+changes <- group_data %>%
+  select(school, race, year, percent) %>%
+  filter(year == 2014 | year == 2024) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = percent
+  )
+
+changes$change <- changes$`2024` - changes$`2014`
+
+changes
+
+```
+
+```{r}
+changes %>%
+  group_by(race) %>%
+  summarise(
+    mean_change = mean(change, na.rm = TRUE),
+    median_change = median(change, na.rm = TRUE)
+  )
+
+```
+
+```{r}
+ggplot(group_data, aes(x = year, y = percent, color = school)) +
+  geom_line() +
+  facet_wrap(~race) +
+  theme_minimal() +
+  labs(
+    title = "Racial and Ethnic Diversity at Big Ten Universities",
+    x = "Year",
+    y = "Percentage"
+  )
+```
+
+```{r}
+ggplot(changes, aes(x = reorder(school, change), y = change)) +
+  geom_col() +
+  coord_flip() +
+  facet_wrap(~race, scales = "free_y") +
+  theme_minimal() +
+  labs(
+    title = "Percentage-Point Changes by University, 2014-2024",
+    x = "University",
+    y = "Percentage-point change"
+  )
+```
+# Summary
+
+For this project, I examined how racial and ethnic representation changed at Big Ten universities from 2014 to 2024.I tried to follow your advice, I calculated the percentage-point changes for each group at every school. I also calculated the mean and median to compare changes across universities, giving each school equal weight. I looked at how UMD compared with the other Big Ten schools. I created line charts to show changes over time and bar charts to compare schools. These analyses will help me understand the overall changes in racial and ethnic diversity across the Big Ten.
